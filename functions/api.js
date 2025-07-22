@@ -292,11 +292,14 @@ app.post(
       }
 
       // 处理图片路径（在Netlify Functions中，我们使用占位符）
-      const imagePath = req.file
-        ? `/uploads/${Date.now()}_${Math.random()
-            .toString(36)
-            .substr(2, 9)}.jpg`
-        : null;
+      // 由于Netlify Functions无法持久化存储文件，我们使用占位符
+      let imagePath = null;
+      if (req.file) {
+        // 将图片转换为Base64，这样前端可以直接显示
+        const base64Image = req.file.buffer.toString("base64");
+        const mimeType = req.file.mimetype;
+        imagePath = `data:${mimeType};base64,${base64Image}`;
+      }
 
       // 创建产品对象
       const newProduct = {
@@ -382,9 +385,10 @@ app.put(
       // 处理图片路径
       let imagePath = products[existingProductIndex].image; // 保持原有图片
       if (req.file) {
-        imagePath = `/uploads/${Date.now()}_${Math.random()
-          .toString(36)
-          .substr(2, 9)}.jpg`;
+        // 将图片转换为Base64，这样前端可以直接显示
+        const base64Image = req.file.buffer.toString("base64");
+        const mimeType = req.file.mimetype;
+        imagePath = `data:${mimeType};base64,${base64Image}`;
       }
 
       // 更新产品对象
