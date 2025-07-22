@@ -84,7 +84,12 @@ app.get("/api/products", (req, res) => {
     },
   ];
 
-  res.json(sampleProducts);
+  // 返回符合前端期望的格式
+  res.json({
+    success: true,
+    data: sampleProducts,
+    message: "获取产品成功",
+  });
 });
 
 // 404处理
