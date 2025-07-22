@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sail Express API</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.6;
+      }
+      .header {
+        background: #f5f5f5;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      .endpoint {
+        background: #f9f9f9;
+        padding: 15px;
+        margin: 10px 0;
+        border-left: 4px solid #007bff;
+        border-radius: 4px;
+      }
+      .method {
+        font-weight: bold;
+        color: #007bff;
+      }
+      .url {
+        font-family: monospace;
+        background: #e9ecef;
+        padding: 2px 6px;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>🚢 Sail Express API</h1>
+      <p>后端API服务 - Netlify Functions版本</p>
+      <p><strong>状态</strong>: 运行中</p>
+      <p><strong>版本</strong>: 1.0.0</p>
+    </div>
+
+    <h2>📚 API端点</h2>
+
+    <div class="endpoint">
+      <div class="method">GET</div>
+      <div class="url">/api/products</div>
+      <p>获取所有产品列表</p>
+    </div>
+
+    <div class="endpoint">
+      <div class="method">GET</div>
+      <div class="url">/api/products/:id</div>
+      <p>获取单个产品详情</p>
+    </div>
+
+    <div class="endpoint">
+      <div class="method">GET</div>
+      <div class="url">/api/products/category/:category</div>
+      <p>获取指定分类的产品</p>
+    </div>
+
+    <div class="endpoint">
+      <div class="method">POST</div>
+      <div class="url">/api/products</div>
+      <p>添加新产品（需要API密钥）</p>
+    </div>
+
+    <div class="endpoint">
+      <div class="method">PUT</div>
+      <div class="url">/api/products/:id</div>
+      <p>更新产品信息（需要API密钥）</p>
+    </div>
+
+    <div class="endpoint">
+      <div class="method">DELETE</div>
+      <div class="url">/api/products/:id</div>
+      <p>删除产品（需要API密钥）</p>
+    </div>
+
+    <div class="endpoint">
+      <div class="method">GET</div>
+      <div class="url">/health</div>
+      <p>健康检查</p>
+    </div>
+
+    <h2>🔧 使用说明</h2>
+    <p>所有API请求都需要在请求头中包含API密钥：</p>
+    <pre>Authorization: your-api-key</pre>
+
+    <h2>🌐 前端连接</h2>
+    <p>前端网站已部署，可以通过以下地址访问API：</p>
+    <p>
+      <strong>API基础URL</strong>:
+      <code>https://your-backend-site.netlify.app</code>
+    </p>
+
+    <script>
+      // 显示当前时间
+      document.addEventListener("DOMContentLoaded", function () {
+        const now = new Date();
+        document.querySelector(".header p:nth-child(3)").innerHTML =
+          "<strong>状态</strong>: 运行中 | <strong>时间</strong>: " +
+          now.toLocaleString();
+      });
+    </script>
+  </body>
+</html>
