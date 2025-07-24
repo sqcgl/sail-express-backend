@@ -57,11 +57,11 @@ async function runTests() {
     console.log(`   产品数量: ${allProducts.data.count || 0}`);
     console.log("");
 
-    // 测试2: 获取海鲜类产品
-    console.log("2. 测试获取海鲜类产品...");
-    const seafoodProducts = await testAPI("/api/products/category/seafood");
-    console.log(`   状态码: ${seafoodProducts.status}`);
-    console.log(`   产品数量: ${seafoodProducts.data.count || 0}`);
+    // 测试2: 获取新鲜类产品
+    console.log("2. 测试获取新鲜类产品...");
+    const freshProducts = await testAPI("/api/products/category/fresh");
+    console.log(`   状态码: ${freshProducts.status}`);
+    console.log(`   产品数量: ${freshProducts.data.count || 0}`);
     console.log("");
 
     // 测试3: 获取单个产品

@@ -45,37 +45,37 @@ function insertSampleData() {
       name: "新鲜三文鱼",
       description: "挪威进口新鲜三文鱼，肉质鲜美，适合制作各类寿司",
       price: "¥180/kg",
-      category: "seafood",
+      category: "fresh",
     },
     {
       name: "金枪鱼",
       description: "深海金枪鱼，口感细腻，营养丰富",
       price: "¥220/kg",
-      category: "seafood",
+      category: "fresh",
     },
     {
       name: "寿司米",
       description: "日本进口寿司专用米，粘性适中，口感绝佳",
       price: "¥25/kg",
-      category: "ingredients",
+      category: "dry",
     },
     {
       name: "海苔",
       description: "优质海苔，色泽深绿，口感脆嫩",
       price: "¥15/包",
-      category: "ingredients",
+      category: "dry",
     },
     {
       name: "寿司刀",
       description: "专业寿司刀，锋利耐用，切割精准",
       price: "¥280/把",
-      category: "tools",
+      category: "supply",
     },
     {
       name: "寿司卷帘",
       description: "竹制寿司卷帘，传统工艺，使用方便",
       price: "¥45/个",
-      category: "tools",
+      category: "supply",
     },
   ];
 
