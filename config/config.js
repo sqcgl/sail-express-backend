@@ -15,7 +15,9 @@ const config = {
   maxFileSize: process.env.MAX_FILE_SIZE || 5242880, // 5MB
 
   // CORS配置 - 支持多个来源
-  corsOrigin: process.env.CORS_ORIGIN || "http://localhost:5173,https://sail-express.netlify.app",
+  corsOrigin:
+    process.env.CORS_ORIGIN ||
+    "http://localhost:5173,https://sail-express.netlify.app",
 
   // 产品分类
   categories: [
