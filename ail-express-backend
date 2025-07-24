@@ -1,0 +1,5 @@
+[33md1f8773[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m 修复图片显示问题 - 使用Base64编码处理上传图片
+[33m7048177[m 恢复完整的CRUD功能到Netlify Functions - 添加POST/PUT/DELETE操作和图片上传
+[33m7e65db3[m Fix API response format to match frontend expectations
+[33m768908b[m Fix Netlify Functions crash by simplifying API
+[33m5d517b6[m Prepare backend for Netlify Functions deployment

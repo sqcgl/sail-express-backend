@@ -47,9 +47,26 @@ const requestLogger = (req, res, next) => {
   next();
 };
 
-// CORS配置中间件
+// CORS配置中间件 - 支持多个来源
 const corsOptions = {
-  origin: config.corsOrigin,
+  origin: function (origin, callback) {
+    // 允许的域名列表
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'http://localhost:3000',
+      'https://sail-express.netlify.app',
+      'https://sail-express-frontend.netlify.app'
+    ];
+    
+    // 允许没有origin的请求（如移动应用、Postman等）
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('不允许的来源'));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
