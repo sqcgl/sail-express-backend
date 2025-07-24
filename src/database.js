@@ -149,12 +149,12 @@ const dbOperations = {
       db.run(
         sql,
         [
-          product.name_zh || product.name, // 保持向后兼容
-          product.name_zh,
+          product.name_zh || product.name_en || product.name, // 优先使用中文名称，其次英文名称，最后原有名称
+          product.name_zh || "", // 允许中文名称为空
           product.name_en,
-          product.description_zh || product.description, // 保持向后兼容
-          product.description_zh,
-          product.description_en,
+          product.description_zh || product.description_en || product.description, // 优先使用中文描述，其次英文描述，最后原有描述
+          product.description_zh || "", // 允许中文描述为空
+          product.description_en || "",
           product.price,
           product.category,
           product.image,
@@ -178,12 +178,12 @@ const dbOperations = {
       db.run(
         sql,
         [
-          product.name_zh || product.name, // 保持向后兼容
-          product.name_zh,
+          product.name_zh || product.name_en || product.name, // 优先使用中文名称，其次英文名称，最后原有名称
+          product.name_zh || "", // 允许中文名称为空
           product.name_en,
-          product.description_zh || product.description, // 保持向后兼容
-          product.description_zh,
-          product.description_en,
+          product.description_zh || product.description_en || product.description, // 优先使用中文描述，其次英文描述，最后原有描述
+          product.description_zh || "", // 允许中文描述为空
+          product.description_en || "",
           product.price,
           product.category,
           product.image,

@@ -168,12 +168,12 @@ router.post("/", upload.single("image"), async (req, res) => {
       category,
     } = req.body;
 
-    // 验证必填字段
-    if (!name_zh || !name_en || !price || !category) {
+    // 验证必填字段 - 英文名称、价格和分类为必填项，中文名称为可选
+    if (!name_en || !price || !category) {
       return res.status(400).json({
         success: false,
         error: "缺少必填字段",
-        message: "中文名称、英文名称、价格和分类为必填项",
+        message: "英文名称、价格和分类为必填项",
       });
     }
 
@@ -244,12 +244,12 @@ router.put("/:id", upload.single("image"), async (req, res) => {
       });
     }
 
-    // 验证必填字段
-    if (!name_zh || !name_en || !price || !category) {
+    // 验证必填字段 - 英文名称、价格和分类为必填项，中文名称为可选
+    if (!name_en || !price || !category) {
       return res.status(400).json({
         success: false,
         error: "缺少必填字段",
-        message: "中文名称、英文名称、价格和分类为必填项",
+        message: "英文名称、价格和分类为必填项",
       });
     }
 
