@@ -9,6 +9,7 @@ const {
   corsOptions,
 } = require("./middleware");
 const productsRouter = require("../routes/products");
+const { init } = require("./init");
 
 const app = express();
 
@@ -70,6 +71,10 @@ app.use(errorHandler);
 
 // 启动服务器
 const PORT = config.port;
+
+// 初始化服务
+init();
+
 app.listen(PORT, () => {
   console.log("🚀 Sail Express 后端服务器启动成功！");
   console.log(`📍 服务器地址: http://localhost:${PORT}`);
