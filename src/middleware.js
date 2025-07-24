@@ -8,12 +8,12 @@ const validateApiKey = (req, res, next) => {
   }
 
   const apiKey = req.headers.authorization;
-  
+
   if (!apiKey || apiKey !== config.apiKey) {
-    return res.status(401).json({ 
+    return res.status(401).json({
       success: false,
       error: "未授权访问",
-      message: "请提供有效的API密钥" 
+      message: "请提供有效的API密钥",
     });
   }
 
@@ -23,7 +23,7 @@ const validateApiKey = (req, res, next) => {
 // 错误处理中间件
 const errorHandler = (err, req, res, next) => {
   console.error("API错误:", err);
-  
+
   // 处理文件上传错误
   if (err.code === "LIMIT_FILE_SIZE") {
     return res.status(400).json({
@@ -32,7 +32,7 @@ const errorHandler = (err, req, res, next) => {
       message: `文件大小不能超过 ${config.maxFileSize / (1024 * 1024)}MB`,
     });
   }
-  
+
   if (err.code === "LIMIT_UNEXPECTED_FILE") {
     return res.status(400).json({
       success: false,
@@ -45,7 +45,8 @@ const errorHandler = (err, req, res, next) => {
   res.status(500).json({
     success: false,
     error: "服务器内部错误",
-    message: process.env.NODE_ENV === "production" ? "服务器内部错误" : err.message,
+    message:
+      process.env.NODE_ENV === "production" ? "服务器内部错误" : err.message,
   });
 };
 
@@ -58,7 +59,7 @@ const requestLogger = (req, res, next) => {
   const ip = req.ip || req.connection.remoteAddress;
 
   console.log(`[${timestamp}] ${method} ${url} - ${ip} - ${userAgent}`);
-  
+
   next();
 };
 
@@ -70,4 +71,4 @@ module.exports = {
   errorHandler,
   requestLogger,
   corsOptions,
-}; 
+};

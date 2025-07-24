@@ -13,6 +13,7 @@ Require stack:
 ## 🔍 问题分析
 
 ### 根本原因
+
 在之前的表单验证修复过程中，我们删除了 `config/config.js` 和 `src/middleware.js` 文件，但 `src/server.js` 仍然在尝试引用这些文件：
 
 ```javascript
@@ -29,6 +30,7 @@ const {
 ```
 
 ### 问题所在
+
 - `config/config.js` 文件被删除，但 `server.js` 仍需要配置信息
 - `src/middleware.js` 文件被删除，但 `server.js` 仍需要中间件函数
 - 缺少必要的目录初始化逻辑
@@ -36,6 +38,7 @@ const {
 ## ✅ 修复方案
 
 ### 1. 重新创建配置文件
+
 创建 `config/config.js` 文件，包含服务器运行所需的所有配置：
 
 ```javascript
@@ -43,17 +46,17 @@ const config = {
   // 服务器配置
   port: process.env.PORT || 3000,
   nodeEnv: process.env.NODE_ENV || "development",
-  
+
   // API配置
   apiKey: process.env.API_KEY || "your-secret-key-12345",
-  
+
   // 数据库配置
   dbPath: process.env.DB_PATH || path.join(__dirname, "..", "database.db"),
-  
+
   // 文件上传配置
   uploadPath: process.env.UPLOAD_PATH || path.join(__dirname, "..", "uploads"),
   maxFileSize: 5 * 1024 * 1024, // 5MB
-  
+
   // 产品分类配置
   categories: [
     { id: "fresh", name: "新鲜" },
@@ -61,7 +64,7 @@ const config = {
     { id: "dry", name: "干货" },
     { id: "supply", name: "器具" },
   ],
-  
+
   // CORS配置
   corsOptions: {
     origin: process.env.CORS_ORIGIN || "*",
@@ -72,6 +75,7 @@ const config = {
 ```
 
 ### 2. 重新创建中间件文件
+
 创建 `src/middleware.js` 文件，包含所有必要的中间件函数：
 
 ```javascript
@@ -96,6 +100,7 @@ const requestLogger = (req, res, next) => {
 ```
 
 ### 3. 创建初始化脚本
+
 创建 `src/init.js` 文件，确保必要的目录结构存在：
 
 ```javascript
@@ -117,6 +122,7 @@ function ensurePublicDirectory() {
 ```
 
 ### 4. 修改服务器启动逻辑
+
 在 `src/server.js` 中添加初始化调用：
 
 ```javascript
@@ -129,11 +135,13 @@ init();
 ## 🧪 测试验证
 
 ### 本地测试
+
 ```bash
 node src/server.js
 ```
 
 **预期输出：**
+
 ```
 🚀 初始化 Sail Express 后端服务...
 创建上传目录: C:\Projects\sail-express-backend\uploads
@@ -150,6 +158,7 @@ node src/server.js
 ```
 
 ### 部署测试
+
 - Railway 部署应该不再崩溃
 - 服务器应该能够正常启动
 - API 端点应该能够正常响应
@@ -173,4 +182,4 @@ node src/server.js
 
 ## 📝 总结
 
-通过重新创建必要的配置文件和中间件，解决了服务器启动时的模块找不到错误。现在服务器可以正常启动，并且包含了完整的配置管理和目录初始化逻辑。 
+通过重新创建必要的配置文件和中间件，解决了服务器启动时的模块找不到错误。现在服务器可以正常启动，并且包含了完整的配置管理和目录初始化逻辑。
