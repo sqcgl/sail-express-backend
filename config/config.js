@@ -26,9 +26,16 @@ const config = {
 
   // CORS配置
   corsOptions: {
-    origin: process.env.CORS_ORIGIN || "*",
+    origin: process.env.CORS_ORIGIN || [
+      "https://sail-express.com",
+      "https://sail-express-frontend.vercel.app",
+      "https://sail-express-frontend.netlify.app",
+      "http://localhost:5173",
+      "http://localhost:3000"
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   },
 };
 
